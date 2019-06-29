@@ -1,0 +1,79 @@
+backend:
+  name: git-gateway
+site_url: https://silly-stallman-3c140e.netlify.com
+media_folder: "static/uploads"
+public_folder: "/uploads"
+show_preview_links: false
+
+collections:
+  - name: "talks"
+    label: "Palestras"
+    folder: "content/talks"
+    create: true
+    slug: "palestras/{{slug}}"
+    fields:
+      - {label: "Título", name: "title", widget: "string" }
+      - {label: "Link", name: "link", widget: "string", default: "/contato" }
+      - {label: "Imagem", name: "image", widget: "image" }
+      - {label: "Descrição", name: "description", widget: "string" }
+      - {label: "Rascunho", name: "draft", widget: "boolean", default: true}
+      - {label: "Conteúdo", name: "body", widget: "markdown" }
+    editor:
+      preview: false
+  - name: "store"
+    label: "Produtos"
+    folder: "content/store"
+    create: true
+    slug: "{{type}}/{{slug}}"
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - label: "Preço"
+        name: "price"
+        widget: "object"
+        fields:
+          - {label: "De:", name: "from", widget: string }
+          - {label: "Por:", name: "to", widget: string }
+      - {label: "Link", name: "link", widget: "string"}
+      - {label: "Imagem", name: "image", widget: "image"}
+      - label: "Tipo"
+        name: "type"
+        widget: "select"
+        options:
+          - {label: "Brinquedos Pedagógicos", value: "brinquedos-pedagogicos" }
+          - {label: "Livros", value: "livros" }
+          - {label: "Outros", value: "outros" }
+      - {label: "Rascunho", name: "draft", widget: "boolean", default: true}
+      - {label: "Conteúdo", name: "body", widget: "markdown"}
+    editor:
+      preview: false
+  - name: "blog"
+    label: "Publicações"
+    folder: "content/posts"
+    create: true
+    slug: "blog/{{slug}}"
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Imagem", name: "image", widget: "image"}
+      - {label: "Rascunho", name: "draft", widget: "boolean", default: true}
+      - {label: "Conteúdo", name: "body", widget: "markdown"}
+  - label: "Páginas"
+    name: "pages"
+    create: false
+    files:
+      - label: "Página Inicial"
+        name: "home"
+        file: "content/settings/home.yml"
+        fields:
+          - {label: "Youtube URL", name: "homeYoutubeURL", widget: "string"}
+      - label: "Contato"
+        name: "contact"
+        file: "content/settings/contact.yml"
+        fields:
+          - {label: "WhatsApp URL", name: "contactWhatsappUrl", widget: "string"}
+      - label: "Sobre Nós"
+        name: "about-us"
+        file: "content/settings/about-us.yml"
+        fields:
+          - {label: "Conteúdo", name: "body", widget: "markdown"}
+    editor:
+      preview: false
